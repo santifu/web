@@ -1,0 +1,53 @@
+- id: rtsd
+  tags: [education, research]
+  year: "2023–"
+  name:
+    es: "Remix the School Distributed"
+    ca: "Remix the School Distributed"
+    en: "Remix the School Distributed"
+  tag_label:
+    es: "Educación · Investigación"
+    ca: "Educació · Recerca"
+    en: "Education · Research"
+  desc:
+    es: "Programa distribuido de educación maker que conecta escuelas, Fab Labs y comunidades para aprender sobre economía circular a través de la fabricación y los biomateriales."
+    ca: "Programa distribuït d'educació maker que connecta escoles, Fab Labs i comunitats per aprendre sobre economia circular a través de la fabricació i els biomaterials."
+    en: "A distributed maker education program connecting schools, Fab Labs, and communities to learn about circular economy through fabrication and biomaterials."
+  url: "#"
+  image: ""
+
+- id: biomaterials
+  tags: [fabrication, research]
+  year: "2022"
+  name:
+    es: "Biomateriales Aplicados"
+    ca: "Biomaterials Aplicats"
+    en: "Applied Biomaterials"
+  tag_label:
+    es: "Fabricación · Investigación"
+    ca: "Fabricació · Recerca"
+    en: "Fabrication · Research"
+  desc:
+    es: "Exploración de recetas y procesos para crear materiales biodegradables a partir de residuos orgánicos locales. Talleres, protocolos abiertos y documentación para comunidades maker."
+    ca: "Exploració de receptes i processos per crear materials biodegradables a partir de residus orgànics locals. Tallers, protocols oberts i documentació per a comunitats maker."
+    en: "Exploration of recipes and processes to create biodegradable materials from local organic waste. Workshops, open protocols, and documentation for maker communities."
+  url: "#"
+  image: ""
+
+- id: fabacademy
+  tags: [education, fabrication]
+  year: "2021–"
+  name:
+    es: "Fab Academy — Facilitación"
+    ca: "Fab Academy — Facilitació"
+    en: "Fab Academy — Facilitation"
+  tag_label:
+    es: "Educación · Fabricación"
+    ca: "Educació · Fabricació"
+    en: "Education · Fabrication"
+  desc:
+    es: "Diseño y facilitación de módulos del programa global Fab Academy, un curso distribuido sobre fabricación digital que combina instrucción remota con práctica local en Fab Labs de todo el mundo."
+    ca: "Disseny i facilitació de mòduls del programa global Fab Academy, un curs distribuït sobre fabricació digital que combina instrucció remota amb pràctica local en Fab Labs de tot el món."
+    en: "Design and facilitation of modules for the global Fab Academy program, a distributed digital fabrication course combining remote instruction with local practice in Fab Labs worldwide."
+  url: "#"
+  image: ""

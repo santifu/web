@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="{{ if .IsHome }}website{{ else }}article{{ end }}" />
+  <meta property="og:url"         content="{{ .Permalink }}" />
+  <meta property="og:title"       content="{{ .Title }}" />
+  <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+  <meta property="og:image"       content="{{ .Site.BaseURL }}{{ .Site.Params.ogImage }}" />
+  <meta name="twitter:card"       content="summary_large_image" />
+
+  <!-- Alternate language links -->
+  {{ range .AllTranslations }}
+  <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" />
+  {{ end }}
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>·</text></svg>" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-es:  #F4EDE3;
+      --bg-ca:  #E8F0E2;
+      --bg-en:  #DDE8F2;
+      --bg: var(--bg-es);
+      --ink: #3A2E28;
+      --ink-light: #7A6A60;
+      --accent: #8B6F5C;
+      --border: rgba(58,46,40,0.15);
+      --font-serif: 'Georgia','Times New Roman',serif;
+      --font-sans: system-ui,-apple-system,'Helvetica Neue',sans-serif;
+      --max-w: 860px;
+      --transition: 0.6s ease;
+    }
+    body.dark {
+      --bg-es: #1E1914; --bg-ca: #111A10; --bg-en: #101620;
+      --ink: #EDE5DC; --ink-light: #9A8E86; --accent: #C4997A;
+      --border: rgba(237,229,220,0.12);
+    }
+    body.lang-es { --bg: var(--bg-es); }
+    body.lang-ca { --bg: var(--bg-ca); }
+    body.lang-en { --bg: var(--bg-en); }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-serif);
+      font-size: 16px;
+      line-height: 1.7;
+      transition: background-color var(--transition), color var(--transition);
+      min-height: 100vh;
+    }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      align-items: center; padding: 0 2rem; height: 56px;
+      border-bottom: 1px solid var(--border);
+      background-color: var(--bg);
+      transition: background-color var(--transition);
+    }
+    .nav-left { display: flex; gap: 1.8rem; }
+    .nav-logo { font-family: var(--font-serif); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--ink); text-decoration: none; justify-self: center; }
+    .nav-right { display: flex; justify-content: flex-end; align-items: center; gap: 1.4rem; }
+    nav a { font-family: var(--font-sans); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); text-decoration: none; transition: color 0.2s; }
+    nav a:hover { color: var(--ink); }
+
+    /* Lang switcher */
+    .lang-switcher { display: flex; gap: 0.5rem; align-items: center; }
+    .lang-btn { font-family: var(--font-sans); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-light); background: none; border: none; cursor: pointer; padding: 2px 6px; border-radius: 3px; transition: all 0.2s; }
+    .lang-btn:hover { color: var(--ink); }
+    .lang-btn.active { color: var(--ink); background: rgba(58,46,40,0.1); font-weight: 600; }
+    body.dark .lang-btn.active { background: rgba(237,229,220,0.1); }
+    .lang-sep { color: var(--border); font-size: 0.7rem; }
+    .dark-btn { background: none; border: none; cursor: pointer; font-size: 0.95rem; padding: 4px; color: var(--ink-light); transition: color 0.2s; }
+    .dark-btn:hover { color: var(--ink); }
+
+    /* Hamburger */
+    .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--ink); transition: all 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; inset: 56px 0 0 0; background: var(--bg); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; transition: background-color var(--transition); }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a, .mobile-menu button { font-family: var(--font-sans); font-size: 1.1rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); text-decoration: none; background: none; border: none; cursor: pointer; }
+    .mobile-menu .lang-row { display: flex; gap: 1.2rem; align-items: center; }
+    @media (max-width: 640px) {
+      .nav-left, .nav-right { display: none; }
+      .hamburger { display: flex; }
+      nav { grid-template-columns: auto 1fr auto; }
+      .nav-logo { justify-self: start; margin-left: 0.5rem; }
+    }
+
+    /* Sections */
+    section { max-width: var(--max-w); margin: 0 auto; padding: 5rem 2rem; }
+    .section-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--border); padding-bottom: 0.6rem; margin-bottom: 2.5rem; }
+    .section-title { font-family: var(--font-sans); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); }
+
+    /* Footer */
+    footer { max-width: var(--max-w); margin: 0 auto; padding: 2rem 2rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    footer p { font-family: var(--font-sans); font-size: 0.75rem; color: var(--ink-light); }
+
+    /* Lang dot */
+    .lang-indicator { position: fixed; bottom: 1.5rem; right: 1.5rem; width: 10px; height: 10px; border-radius: 50%; opacity: 0.4; transition: background var(--transition); pointer-events: none; }
+    body.lang-es .lang-indicator { background: #C47B5A; }
+    body.lang-ca .lang-indicator { background: #6B9E5A; }
+    body.lang-en .lang-indicator { background: #5A7FA0; }
+
+    {{ block "styles" . }}{{ end }}
+  </style>
+</head>
+<body class="lang-{{ .Site.Language.Lang }}">
+
+<div class="lang-indicator"></div>
+
+<nav>
+  <div class="nav-left">
+    <a href="{{ relLangURL "#projects" }}">{{ i18n "nav_projects" }}</a>
+    <a href="{{ relLangURL "#blog" }}">Blog</a>
+    <a href="{{ relLangURL "#about" }}">{{ i18n "nav_about" }}</a>
+  </div>
+
+  <a href="{{ relLangURL "/" }}" class="nav-logo">S·F</a>
+
+  <div class="nav-right">
+    <div class="lang-switcher">
+      {{ range .Site.Languages }}
+      {{ if gt .Weight 1 }}<span class="lang-sep">·</span>{{ end }}
+      {{ $translation := index ($.AllTranslations) (sub .Weight 1) }}
+      <a href="{{ with $translation }}{{ .Permalink }}{{ else }}{{ relLangURL "/" }}{{ end }}"
+         class="lang-btn{{ if eq .Lang $.Site.Language.Lang }} active{{ end }}">
+        {{ .Lang | upper }}
+      </a>
+      {{ end }}
+    </div>
+    <button class="dark-btn" id="dark-toggle">○</button>
+    <a href="{{ relLangURL "#contact" }}">{{ i18n "nav_contact" }}</a>
+  </div>
+
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="{{ relLangURL "#about" }}" class="mobile-close">{{ i18n "nav_about" }}</a>
+  <a href="{{ relLangURL "#projects" }}" class="mobile-close">{{ i18n "nav_projects" }}</a>
+  <a href="{{ relLangURL "#blog" }}" class="mobile-close">Blog</a>
+  <a href="{{ relLangURL "#contact" }}" class="mobile-close">{{ i18n "nav_contact" }}</a>
+  <div class="lang-row">
+    {{ range .Site.Languages }}
+    {{ $translation := index ($.AllTranslations) (sub .Weight 1) }}
+    <a href="{{ with $translation }}{{ .Permalink }}{{ else }}{{ relLangURL "/" }}{{ end }}">{{ .Lang | upper }}</a>
+    {{ if lt .Weight (len $.Site.Languages) }}<span>·</span>{{ end }}
+    {{ end }}
+  </div>
+  <button id="dark-toggle-mobile">○</button>
+</div>
+
+{{ block "main" . }}{{ end }}
+
+<footer>
+  <p>© {{ now.Year }} Santi Fuentemilla</p>
+  <p>Barcelona</p>
+</footer>
+
+<script>
+  const body = document.body;
+
+  // Dark mode
+  const darkBtn = document.getElementById('dark-toggle');
+  const darkBtnM = document.getElementById('dark-toggle-mobile');
+  function setDark(on) {
+    body.classList.toggle('dark', on);
+    const icon = on ? '●' : '○';
+    darkBtn.textContent = icon;
+    darkBtnM.textContent = icon;
+    localStorage.setItem('dark', on ? '1' : '0');
+  }
+  darkBtn.addEventListener('click', () => setDark(!body.classList.contains('dark')));
+  darkBtnM.addEventListener('click', () => setDark(!body.classList.contains('dark')));
+  if (localStorage.getItem('dark') === '1') setDark(true);
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open', open);
+    body.style.overflow = open ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mobile-close').forEach(el =>
+    el.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      body.style.overflow = '';
+    })
+  );
+
+  {{ block "scripts" . }}{{ end }}
+</script>
+</body>
+</html>

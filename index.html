@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santi Fuentemilla — Maker & Educator</title>
+  <meta name="description" content="Maker, investigador y educador. Fab Lab Barcelona." />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://yourusername.github.io/" />
+  <meta property="og:title"       content="Santi Fuentemilla" />
+  <meta property="og:description" content="Maker, researcher and educator at Fab Lab Barcelona." />
+  <meta property="og:image"       content="https://yourusername.github.io/img/og.jpg" />
+
+  <!-- Twitter card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Santi Fuentemilla" />
+  <meta name="twitter:description" content="Maker, researcher and educator at Fab Lab Barcelona." />
+  <meta name="twitter:image"       content="https://yourusername.github.io/img/og.jpg" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>·</text></svg>" />
+  <style>
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-es:  #F4EDE3;
+      --bg-ca:  #E8F0E2;
+      --bg-en:  #DDE8F2;
+      --bg: var(--bg-es);
+      --ink: #3A2E28;
+      --ink-light: #7A6A60;
+      --accent: #8B6F5C;
+      --border: rgba(58, 46, 40, 0.15);
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --font-sans: system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+      --max-w: 860px;
+      --transition: 0.6s ease;
+    }
+
+    /* ─── Dark mode ─── */
+    body.dark {
+      --bg-es:  #1E1914;
+      --bg-ca:  #111A10;
+      --bg-en:  #101620;
+      --ink: #EDE5DC;
+      --ink-light: #9A8E86;
+      --accent: #C4997A;
+      --border: rgba(237, 229, 220, 0.12);
+    }
+    body.dark .project-image { background: rgba(237,229,220,0.06); }
+    body.dark .lang-btn.active { background: rgba(237,229,220,0.1); }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-serif);
+      font-size: 16px;
+      line-height: 1.7;
+      transition: background-color var(--transition);
+      min-height: 100vh;
+    }
+
+    /* ─── Language states ─── */
+    body.lang-es { --bg: var(--bg-es); }
+    body.lang-ca { --bg: var(--bg-ca); }
+    body.lang-en { --bg: var(--bg-en); }
+
+    /* ─── Navigation ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 0 2rem;
+      height: 56px;
+      border-bottom: 1px solid var(--border);
+      background-color: var(--bg);
+      transition: background-color var(--transition);
+    }
+
+    .nav-left {
+      display: flex;
+      gap: 1.8rem;
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      text-decoration: none;
+      justify-self: center;
+    }
+
+    .nav-right {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    nav a {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--ink); }
+
+    /* ─── Language switcher ─── */
+    .lang-switcher {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .lang-btn {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover { color: var(--ink); }
+    .lang-btn.active {
+      color: var(--ink);
+      background: rgba(58, 46, 40, 0.1);
+      font-weight: 600;
+    }
+    .lang-sep {
+      color: var(--border);
+      font-size: 0.7rem;
+    }
+
+    /* ─── Sections ─── */
+    section {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    /* ─── Hero ─── */
+    #hero {
+      padding-top: 7rem;
+      padding-bottom: 5rem;
+      text-align: center;
+    }
+
+    .hero-text {
+      font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+      line-height: 1.65;
+      color: var(--ink);
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .hero-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-links a {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 1px;
+      transition: opacity 0.2s;
+    }
+    .hero-links a:hover { opacity: 0.6; }
+
+    /* ─── Section header ─── */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+    }
+
+    /* ─── About ─── */
+    #about .about-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    @media (max-width: 600px) {
+      #about .about-body { grid-template-columns: 1fr; }
+    }
+
+    .about-text p { margin-bottom: 1.2em; color: var(--ink); }
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .about-meta {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--ink-light);
+    }
+    .about-meta ul { list-style: none; }
+    .about-meta li { padding: 0.6rem 0; border-bottom: 1px solid var(--border); }
+    .about-meta li:first-child { border-top: 1px solid var(--border); }
+    .about-meta .label {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .about-meta .value { color: var(--ink); }
+
+    /* ─── Projects filter ─── */
+    .filter-bar {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .filter-btn {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      background: none;
+      border: 1px solid var(--border);
+      padding: 5px 14px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover { color: var(--ink); border-color: var(--ink-light); }
+    .filter-btn.active {
+      color: var(--ink);
+      border-color: var(--ink);
+      background: rgba(58, 46, 40, 0.07);
+    }
+
+    /* ─── Project list ─── */
+    .project-list { list-style: none; }
+
+    .project-item {
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .project-summary {
+      display: grid;
+      grid-template-columns: 1fr auto auto auto;
+      gap: 1rem;
+      align-items: center;
+      padding: 1.1rem 0;
+      cursor: pointer;
+      list-style: none;
+    }
+    .project-summary::-webkit-details-marker { display: none; }
+
+    .project-name {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-transform: uppercase;
+    }
+
+    .project-tag {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      color: var(--ink-light);
+    }
+
+    .project-year {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      color: var(--ink-light);
+      min-width: 3.5rem;
+      text-align: right;
+    }
+
+    .project-toggle {
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      transition: transform 0.3s;
+      min-width: 1.2rem;
+      text-align: center;
+    }
+
+    details[open] .project-toggle { transform: rotate(180deg); }
+
+    .project-body {
+      padding: 0 0 1.5rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .project-summary { grid-template-columns: 1fr auto; }
+      .project-tag { display: none; }
+      .project-body { grid-template-columns: 1fr; }
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    .project-link {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 1px;
+      display: inline-block;
+      margin-top: 0.8rem;
+    }
+
+    .project-image {
+      aspect-ratio: 4/3;
+      background: rgba(58, 46, 40, 0.08);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .project-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ─── Blog ─── */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 2rem;
+    }
+
+    .blog-card {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .blog-card:hover .blog-title { color: var(--accent); }
+
+    .blog-date {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-title {
+      font-size: 1rem;
+      line-height: 1.4;
+      margin-bottom: 0.6rem;
+      transition: color 0.2s;
+    }
+
+    .blog-excerpt {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--ink-light);
+      line-height: 1.6;
+    }
+
+    /* ─── Contact ─── */
+    #contact .contact-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    @media (max-width: 600px) {
+      #contact .contact-body { grid-template-columns: 1fr; }
+    }
+
+    .contact-intro { font-size: 1rem; color: var(--ink); }
+
+    .contact-links { list-style: none; }
+    .contact-links li { padding: 0.7rem 0; border-bottom: 1px solid var(--border); }
+    .contact-links li:first-child { border-top: 1px solid var(--border); }
+
+    .contact-links a {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--ink);
+      text-decoration: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: color 0.2s;
+    }
+    .contact-links a:hover { color: var(--accent); }
+    .contact-links .arrow { font-size: 0.75rem; }
+
+    /* ─── Footer ─── */
+    footer {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 2rem 2rem 3rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      color: var(--ink-light);
+    }
+
+    /* ─── Language-specific content ─── */
+    [data-lang] { display: none; }
+    body.lang-es [data-lang="es"] { display: block; }
+    body.lang-ca [data-lang="ca"] { display: block; }
+    body.lang-en [data-lang="en"] { display: block; }
+
+    [data-lang-inline] { display: none; }
+    body.lang-es [data-lang-inline="es"] { display: inline; }
+    body.lang-ca [data-lang-inline="ca"] { display: inline; }
+    body.lang-en [data-lang-inline="en"] { display: inline; }
+
+    /* ─── Dark mode toggle ─── */
+    .dark-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      line-height: 1;
+      padding: 4px;
+      color: var(--ink-light);
+      transition: color 0.2s;
+    }
+    .dark-btn:hover { color: var(--ink); }
+
+    /* ─── Mobile nav ─── */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--ink);
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 56px 0 0 0;
+      background: var(--bg);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      transition: background-color var(--transition);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a, .mobile-menu button {
+      font-family: var(--font-sans);
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .mobile-menu .lang-row {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+    }
+
+    @media (max-width: 640px) {
+      .nav-left, .nav-right { display: none; }
+      .hamburger { display: flex; }
+      nav { grid-template-columns: auto 1fr auto; }
+      .nav-logo { justify-self: start; margin-left: 0.5rem; }
+    }
+
+    /* ─── Color transition indicator ─── */
+    .lang-indicator {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.4;
+      transition: all var(--transition);
+      pointer-events: none;
+    }
+    body.lang-es .lang-indicator { background: #C47B5A; }
+    body.lang-ca .lang-indicator { background: #6B9E5A; }
+    body.lang-en .lang-indicator { background: #5A7FA0; }
+  </style>
+</head>
+<body class="lang-es">
+
+<!-- Language dot indicator -->
+<div class="lang-indicator"></div>
+
+<!-- ─── Navigation ─── -->
+<nav>
+  <div class="nav-left">
+    <a href="#projects">
+      <span data-lang-inline="es">Proyectos</span>
+      <span data-lang-inline="ca">Projectes</span>
+      <span data-lang-inline="en">Projects</span>
+    </a>
+    <a href="#blog">Blog</a>
+    <a href="#about">
+      <span data-lang-inline="es">Sobre mí</span>
+      <span data-lang-inline="ca">Sobre mi</span>
+      <span data-lang-inline="en">About</span>
+    </a>
+  </div>
+
+  <a href="#hero" class="nav-logo">S·F</a>
+
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang-switch="es">Es</button>
+      <span class="lang-sep">·</span>
+      <button class="lang-btn" data-lang-switch="ca">Ca</button>
+      <span class="lang-sep">·</span>
+      <button class="lang-btn" data-lang-switch="en">En</button>
+    </div>
+    <button class="dark-btn" id="dark-toggle" title="Toggle dark mode">○</button>
+    <a href="#contact">
+      <span data-lang-inline="es">Contacto</span>
+      <span data-lang-inline="ca">Contacte</span>
+      <span data-lang-inline="en">Contact</span>
+    </a>
+  </div>
+
+  <!-- Mobile hamburger -->
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about" class="mobile-close">
+    <span data-lang-inline="es">Sobre mí</span>
+    <span data-lang-inline="ca">Sobre mi</span>
+    <span data-lang-inline="en">About</span>
+  </a>
+  <a href="#projects" class="mobile-close">
+    <span data-lang-inline="es">Proyectos</span>
+    <span data-lang-inline="ca">Projectes</span>
+    <span data-lang-inline="en">Projects</span>
+  </a>
+  <a href="#blog" class="mobile-close">Blog</a>
+  <a href="#contact" class="mobile-close">
+    <span data-lang-inline="es">Contacto</span>
+    <span data-lang-inline="ca">Contacte</span>
+    <span data-lang-inline="en">Contact</span>
+  </a>
+  <div class="lang-row">
+    <button data-lang-switch="es">Es</button>
+    <span>·</span>
+    <button data-lang-switch="ca">Ca</button>
+    <span>·</span>
+    <button data-lang-switch="en">En</button>
+  </div>
+  <button id="dark-toggle-mobile">○</button>
+</div>
+
+<!-- ─── Hero ─── -->
+<section id="hero">
+
+  <p class="hero-text" data-lang="es">
+    Soy maker, investigador y educador. Trabajo en la intersección entre
+    fabricación digital, pedagogía y cultura. Creo que aprender haciendo
+    es la forma más honesta de entender el mundo.
+  </p>
+
+  <p class="hero-text" data-lang="ca">
+    Sóc maker, investigador i educador. Treballo en la intersecció entre
+    fabricació digital, pedagogia i cultura. Crec que aprendre fent
+    és la manera més honesta d'entendre el món.
+  </p>
+
+  <p class="hero-text" data-lang="en">
+    I am a maker, researcher, and educator. I work at the intersection of
+    digital fabrication, pedagogy, and culture. I believe that learning
+    by doing is the most honest way to understand the world.
+  </p>
+
+  <div class="hero-links">
+    <a href="#projects">
+      <span data-lang-inline="es">Ver proyectos →</span>
+      <span data-lang-inline="ca">Veure projectes →</span>
+      <span data-lang-inline="en">View projects →</span>
+    </a>
+    <a href="mailto:santi@fablabbcn.org">santi@fablabbcn.org</a>
+  </div>
+</section>
+
+<!-- ─── About ─── -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-title">
+      <span data-lang-inline="es">Sobre mí</span>
+      <span data-lang-inline="ca">Sobre mi</span>
+      <span data-lang-inline="en">About</span>
+    </span>
+  </div>
+
+  <div class="about-body">
+    <div class="about-text">
+      <!-- ES -->
+      <div data-lang="es">
+        <p>
+          Trabajo en Fab Lab Barcelona, donde diseño y facilito
+          programas de educación a través de la fabricación digital y
+          los materiales. Me interesa especialmente cómo las
+          tecnologías maker pueden integrarse en contextos educativos
+          formales e informales.
+        </p>
+        <p>
+          Mi práctica combina diseño, biología, economía circular y
+          pedagogía. Creo en los espacios donde la pregunta importa
+          más que la respuesta.
+        </p>
+      </div>
+      <!-- CA -->
+      <div data-lang="ca">
+        <p>
+          Treballo al Fab Lab Barcelona, on dissenyo i facilito
+          programes d'educació a través de la fabricació digital i
+          els materials. M'interessa especialment com les tecnologies
+          maker es poden integrar en contextos educatius formals i
+          informals.
+        </p>
+        <p>
+          La meva pràctica combina disseny, biologia, economia circular
+          i pedagogia. Crec en els espais on la pregunta importa
+          més que la resposta.
+        </p>
+      </div>
+      <!-- EN -->
+      <div data-lang="en">
+        <p>
+          I work at Fab Lab Barcelona, where I design and facilitate
+          education programs through digital fabrication and materials.
+          I am especially interested in how maker technologies can be
+          integrated into formal and informal educational contexts.
+        </p>
+        <p>
+          My practice combines design, biology, circular economy, and
+          pedagogy. I believe in spaces where the question matters
+          more than the answer.
+        </p>
+      </div>
+    </div>
+
+    <aside class="about-meta">
+      <ul>
+        <li>
+          <span class="label">
+            <span data-lang-inline="es">Ubicación</span>
+            <span data-lang-inline="ca">Ubicació</span>
+            <span data-lang-inline="en">Location</span>
+          </span>
+          <span class="value">Barcelona</span>
+        </li>
+        <li>
+          <span class="label">
+            <span data-lang-inline="es">Organización</span>
+            <span data-lang-inline="ca">Organització</span>
+            <span data-lang-inline="en">Organization</span>
+          </span>
+          <span class="value">Fab Lab Barcelona / IAAC</span>
+        </li>
+        <li>
+          <span class="label">
+            <span data-lang-inline="es">Áreas</span>
+            <span data-lang-inline="ca">Àrees</span>
+            <span data-lang-inline="en">Areas</span>
+          </span>
+          <span class="value">
+            <span data-lang-inline="es">Fabricación digital, Educación, Biomateriales</span>
+            <span data-lang-inline="ca">Fabricació digital, Educació, Biomaterials</span>
+            <span data-lang-inline="en">Digital Fabrication, Education, Biomaterials</span>
+          </span>
+        </li>
+        <li>
+          <span class="label">CV</span>
+          <span class="value">
+            <a href="#" style="color: var(--accent); text-decoration: none;">
+              <span data-lang-inline="es">Descargar PDF →</span>
+              <span data-lang-inline="ca">Descarregar PDF →</span>
+              <span data-lang-inline="en">Download PDF →</span>
+            </a>
+          </span>
+        </li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<!-- ─── Projects ─── -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-title">
+      <span data-lang-inline="es">Proyectos</span>
+      <span data-lang-inline="ca">Projectes</span>
+      <span data-lang-inline="en">Projects</span>
+    </span>
+  </div>
+
+  <!-- Filter -->
+  <div class="filter-bar" id="filter-bar">
+    <button class="filter-btn active" data-filter="all">
+      <span data-lang-inline="es">Todos</span>
+      <span data-lang-inline="ca">Tots</span>
+      <span data-lang-inline="en">All</span>
+    </button>
+    <button class="filter-btn" data-filter="education">
+      <span data-lang-inline="es">Educación</span>
+      <span data-lang-inline="ca">Educació</span>
+      <span data-lang-inline="en">Education</span>
+    </button>
+    <button class="filter-btn" data-filter="fabrication">
+      <span data-lang-inline="es">Fabricación</span>
+      <span data-lang-inline="ca">Fabricació</span>
+      <span data-lang-inline="en">Fabrication</span>
+    </button>
+    <button class="filter-btn" data-filter="research">
+      <span data-lang-inline="es">Investigación</span>
+      <span data-lang-inline="ca">Recerca</span>
+      <span data-lang-inline="en">Research</span>
+    </button>
+  </div>
+
+  <!-- Project list -->
+  <ul class="project-list" id="project-list">
+
+    <li class="project-item" data-tags="education research">
+      <details>
+        <summary class="project-summary">
+          <span class="project-name">
+            <span data-lang-inline="es">Remix the School Distributed</span>
+            <span data-lang-inline="ca">Remix the School Distributed</span>
+            <span data-lang-inline="en">Remix the School Distributed</span>
+          </span>
+          <span class="project-tag">
+            <span data-lang-inline="es">Educación · Investigación</span>
+            <span data-lang-inline="ca">Educació · Recerca</span>
+            <span data-lang-inline="en">Education · Research</span>
+          </span>
+          <span class="project-year">2023–</span>
+          <span class="project-toggle">∨</span>
+        </summary>
+        <div class="project-body">
+          <div>
+            <p class="project-desc" data-lang="es">
+              Programa distribuido de educación maker que conecta escuelas,
+              Fab Labs y comunidades para aprender sobre economía circular a través
+              de la fabricación y los biomateriales. Diseño curricular, formación
+              docente y evaluación de impacto.
+            </p>
+            <p class="project-desc" data-lang="ca">
+              Programa distribuït d'educació maker que connecta escoles,
+              Fab Labs i comunitats per aprendre sobre economia circular a través
+              de la fabricació i els biomaterials. Disseny curricular, formació
+              docent i avaluació d'impacte.
+            </p>
+            <p class="project-desc" data-lang="en">
+              A distributed maker education program connecting schools, Fab Labs,
+              and communities to learn about circular economy through fabrication
+              and biomaterials. Curriculum design, teacher training, and impact assessment.
+            </p>
+            <a href="#" class="project-link">
+              <span data-lang-inline="es">Ver proyecto →</span>
+              <span data-lang-inline="ca">Veure projecte →</span>
+              <span data-lang-inline="en">View project →</span>
+            </a>
+          </div>
+          <div class="project-image">
+            <!-- Replace with actual image: <img src="img/rtsd.jpg" alt="Remix the School"> -->
+          </div>
+        </div>
+      </details>
+    </li>
+
+    <li class="project-item" data-tags="fabrication research">
+      <details>
+        <summary class="project-summary">
+          <span class="project-name">
+            <span data-lang-inline="es">Biomateriales Aplicados</span>
+            <span data-lang-inline="ca">Biomaterials Aplicats</span>
+            <span data-lang-inline="en">Applied Biomaterials</span>
+          </span>
+          <span class="project-tag">
+            <span data-lang-inline="es">Fabricación · Investigación</span>
+            <span data-lang-inline="ca">Fabricació · Recerca</span>
+            <span data-lang-inline="en">Fabrication · Research</span>
+          </span>
+          <span class="project-year">2022</span>
+          <span class="project-toggle">∨</span>
+        </summary>
+        <div class="project-body">
+          <div>
+            <p class="project-desc" data-lang="es">
+              Exploración de recetas y procesos para crear materiales biodegradables
+              a partir de residuos orgánicos locales. Talleres, protocolos abiertos
+              y documentación para comunidades maker.
+            </p>
+            <p class="project-desc" data-lang="ca">
+              Exploració de receptes i processos per crear materials biodegradables
+              a partir de residus orgànics locals. Tallers, protocols oberts
+              i documentació per a comunitats maker.
+            </p>
+            <p class="project-desc" data-lang="en">
+              Exploration of recipes and processes to create biodegradable materials
+              from local organic waste. Workshops, open protocols, and documentation
+              for maker communities.
+            </p>
+            <a href="#" class="project-link">
+              <span data-lang-inline="es">Ver proyecto →</span>
+              <span data-lang-inline="ca">Veure projecte →</span>
+              <span data-lang-inline="en">View project →</span>
+            </a>
+          </div>
+          <div class="project-image"></div>
+        </div>
+      </details>
+    </li>
+
+    <li class="project-item" data-tags="education fabrication">
+      <details>
+        <summary class="project-summary">
+          <span class="project-name">
+            <span data-lang-inline="es">Fab Academy — Facilitación</span>
+            <span data-lang-inline="ca">Fab Academy — Facilitació</span>
+            <span data-lang-inline="en">Fab Academy — Facilitation</span>
+          </span>
+          <span class="project-tag">
+            <span data-lang-inline="es">Educación · Fabricación</span>
+            <span data-lang-inline="ca">Educació · Fabricació</span>
+            <span data-lang-inline="en">Education · Fabrication</span>
+          </span>
+          <span class="project-year">2021–</span>
+          <span class="project-toggle">∨</span>
+        </summary>
+        <div class="project-body">
+          <div>
+            <p class="project-desc" data-lang="es">
+              Diseño y facilitación de módulos del programa global Fab Academy,
+              un curso distribuido sobre fabricación digital que combina
+              instrucción remota con práctica local en Fab Labs de todo el mundo.
+            </p>
+            <p class="project-desc" data-lang="ca">
+              Disseny i facilitació de mòduls del programa global Fab Academy,
+              un curs distribuït sobre fabricació digital que combina
+              instrucció remota amb pràctica local en Fab Labs de tot el món.
+            </p>
+            <p class="project-desc" data-lang="en">
+              Design and facilitation of modules for the global Fab Academy program,
+              a distributed digital fabrication course combining remote instruction
+              with local practice in Fab Labs worldwide.
+            </p>
+            <a href="#" class="project-link">
+              <span data-lang-inline="es">Ver proyecto →</span>
+              <span data-lang-inline="ca">Veure projecte →</span>
+              <span data-lang-inline="en">View project →</span>
+            </a>
+          </div>
+          <div class="project-image"></div>
+        </div>
+      </details>
+    </li>
+
+  </ul>
+</section>
+
+<!-- ─── Blog ─── -->
+<section id="blog">
+  <div class="section-header">
+    <span class="section-title">Blog</span>
+  </div>
+
+  <div class="blog-grid">
+
+    <a href="#" class="blog-card">
+      <p class="blog-date">Marzo 2024</p>
+      <h3 class="blog-title">
+        <span data-lang-inline="es">¿Qué significa aprender en un Fab Lab?</span>
+        <span data-lang-inline="ca">Què significa aprendre en un Fab Lab?</span>
+        <span data-lang-inline="en">What does learning in a Fab Lab mean?</span>
+      </h3>
+      <p class="blog-excerpt">
+        <span data-lang-inline="es">Reflexiones sobre pedagogía maker, el error como método y por qué los espacios importan tanto como los contenidos.</span>
+        <span data-lang-inline="ca">Reflexions sobre pedagogia maker, l'error com a mètode i per què els espais importen tant com els continguts.</span>
+        <span data-lang-inline="en">Reflections on maker pedagogy, error as method, and why spaces matter as much as content.</span>
+      </p>
+    </a>
+
+    <a href="#" class="blog-card">
+      <p class="blog-date">Noviembre 2023</p>
+      <h3 class="blog-title">
+        <span data-lang-inline="es">Biomateriales como herramienta educativa</span>
+        <span data-lang-inline="ca">Biomaterials com a eina educativa</span>
+        <span data-lang-inline="en">Biomaterials as an educational tool</span>
+      </h3>
+      <p class="blog-excerpt">
+        <span data-lang-inline="es">Cocinar materiales con estudiantes abre conversaciones sobre biología, diseño y economía circular que ningún libro de texto puede.</span>
+        <span data-lang-inline="ca">Cuinar materials amb estudiants obre conversacions sobre biologia, disseny i economia circular que cap llibre de text pot fer.</span>
+        <span data-lang-inline="en">Cooking materials with students opens conversations about biology, design, and circular economy that no textbook can.</span>
+      </p>
+    </a>
+
+    <a href="#" class="blog-card">
+      <p class="blog-date">Junio 2023</p>
+      <h3 class="blog-title">
+        <span data-lang-inline="es">Distribuir es un acto pedagógico</span>
+        <span data-lang-inline="ca">Distribuir és un acte pedagògic</span>
+        <span data-lang-inline="en">Distributing is a pedagogical act</span>
+      </h3>
+      <p class="blog-excerpt">
+        <span data-lang-inline="es">Por qué los programas educativos distribuidos —sin un centro fijo— producen aprendizajes que los modelos centralizados no pueden replicar.</span>
+        <span data-lang-inline="ca">Per què els programes educatius distribuïts —sense un centre fix— produeixen aprenentatges que els models centralitzats no poden replicar.</span>
+        <span data-lang-inline="en">Why distributed educational programs —without a fixed center— produce learning that centralized models cannot replicate.</span>
+      </p>
+    </a>
+
+  </div>
+</section>
+
+<!-- ─── Contact ─── -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-title">
+      <span data-lang-inline="es">Contacto</span>
+      <span data-lang-inline="ca">Contacte</span>
+      <span data-lang-inline="en">Contact</span>
+    </span>
+  </div>
+
+  <div class="contact-body">
+    <div>
+      <p class="contact-intro" data-lang="es">
+        Si quieres hablar sobre educación maker, colaborar en un proyecto
+        o simplemente saludar — escríbeme.
+      </p>
+      <p class="contact-intro" data-lang="ca">
+        Si vols parlar sobre educació maker, col·laborar en un projecte
+        o simplement saludar — escriu-me.
+      </p>
+      <p class="contact-intro" data-lang="en">
+        If you want to talk about maker education, collaborate on a project,
+        or just say hello — write to me.
+      </p>
+    </div>
+
+    <ul class="contact-links">
+      <li>
+        <a href="mailto:santi@fablabbcn.org">
+          <span>Email</span>
+          <span class="arrow">↗</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/" target="_blank" rel="noopener">
+          GitHub <span class="arrow">↗</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://linkedin.com/" target="_blank" rel="noopener">
+          LinkedIn <span class="arrow">↗</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://fablabbcn.org" target="_blank" rel="noopener">
+          Fab Lab Barcelona <span class="arrow">↗</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─── Footer ─── -->
+<footer>
+  <p>
+    <span data-lang-inline="es">© 2024 Santi Fuentemilla</span>
+    <span data-lang-inline="ca">© 2024 Santi Fuentemilla</span>
+    <span data-lang-inline="en">© 2024 Santi Fuentemilla</span>
+  </p>
+  <p>
+    <span data-lang-inline="es">Barcelona</span>
+    <span data-lang-inline="ca">Barcelona</span>
+    <span data-lang-inline="en">Barcelona</span>
+  </p>
+</footer>
+
+<!-- ─── Scripts ─── -->
+<script>
+  /* ── Dark mode ── */
+  const darkBtn = document.getElementById('dark-toggle');
+  const darkBtnMobile = document.getElementById('dark-toggle-mobile');
+
+  function setDark(on) {
+    body.classList.toggle('dark', on);
+    const icon = on ? '●' : '○';
+    darkBtn.textContent = icon;
+    darkBtnMobile.textContent = icon;
+    localStorage.setItem('dark', on ? '1' : '0');
+  }
+
+  darkBtn.addEventListener('click', () => setDark(!body.classList.contains('dark')));
+  darkBtnMobile.addEventListener('click', () => setDark(!body.classList.contains('dark')));
+
+  if (localStorage.getItem('dark') === '1') setDark(true);
+
+  /* ── Hamburger ── */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+
+  document.querySelectorAll('.mobile-close').forEach(el => {
+    el.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* ── Language switching ── */
+  const body = document.body;
+
+  const langColors = {
+    es: { bg: '#F4EDE3', label: 'Español' },
+    ca: { bg: '#E8F0E2', label: 'Català' },
+    en: { bg: '#DDE8F2', label: 'English' },
+  };
+
+  function setLang(lang) {
+    // Remove existing lang classes
+    body.classList.remove('lang-es', 'lang-ca', 'lang-en');
+    body.classList.add('lang-' + lang);
+
+    // Update active button
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.langSwitch === lang);
+    });
+
+    // Update html lang attribute
+    document.documentElement.lang = lang;
+
+    // Save preference
+    localStorage.setItem('preferred-lang', lang);
+  }
+
+  document.querySelectorAll('[data-lang-switch]').forEach(btn => {
+    btn.addEventListener('click', () => setLang(btn.dataset.langSwitch));
+  });
+
+  // Restore preference on load
+  const saved = localStorage.getItem('preferred-lang');
+  if (saved && ['es', 'ca', 'en'].includes(saved)) {
+    setLang(saved);
+  }
+
+  /* ── Project filtering ── */
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectItems = document.querySelectorAll('.project-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      projectItems.forEach(item => {
+        if (filter === 'all') {
+          item.style.display = '';
+        } else {
+          const tags = item.dataset.tags || '';
+          item.style.display = tags.includes(filter) ? '' : 'none';
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>

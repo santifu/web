@@ -1,0 +1,190 @@
+{{ define "styles" }}
+  /* Hero */
+  #hero { padding-top: 7rem; padding-bottom: 5rem; text-align: center; }
+  .hero-text { font-size: clamp(1.2rem, 2.5vw, 1.55rem); line-height: 1.65; max-width: 680px; margin: 0 auto 2.5rem; }
+  .hero-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+  .hero-links a { font-family: var(--font-sans); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 1px; transition: opacity 0.2s; }
+  .hero-links a:hover { opacity: 0.6; }
+
+  /* About */
+  #about .about-body { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  @media (max-width: 600px) { #about .about-body { grid-template-columns: 1fr; } }
+  .about-text p { margin-bottom: 1.2em; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-meta { font-family: var(--font-sans); font-size: 0.85rem; color: var(--ink-light); }
+  .about-meta ul { list-style: none; }
+  .about-meta li { padding: 0.6rem 0; border-bottom: 1px solid var(--border); }
+  .about-meta li:first-child { border-top: 1px solid var(--border); }
+  .about-meta .label { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); display: block; margin-bottom: 0.2rem; }
+  .about-meta .value { color: var(--ink); }
+  .about-meta a { color: var(--accent); text-decoration: none; }
+
+  /* Projects */
+  .filter-bar { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .filter-btn { font-family: var(--font-sans); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); background: none; border: 1px solid var(--border); padding: 5px 14px; border-radius: 2px; cursor: pointer; transition: all 0.2s; }
+  .filter-btn:hover { color: var(--ink); border-color: var(--ink-light); }
+  .filter-btn.active { color: var(--ink); border-color: var(--ink); background: rgba(58,46,40,0.07); }
+  body.dark .filter-btn.active { background: rgba(237,229,220,0.07); }
+  .project-list { list-style: none; }
+  .project-item { border-bottom: 1px solid var(--border); }
+  .project-summary { display: grid; grid-template-columns: 1fr auto auto auto; gap: 1rem; align-items: center; padding: 1.1rem 0; cursor: pointer; list-style: none; }
+  .project-summary::-webkit-details-marker { display: none; }
+  .project-name { font-family: var(--font-sans); font-size: 0.9rem; letter-spacing: 0.03em; text-transform: uppercase; }
+  .project-tag { font-family: var(--font-sans); font-size: 0.75rem; color: var(--ink-light); }
+  .project-year { font-family: var(--font-sans); font-size: 0.75rem; color: var(--ink-light); min-width: 3.5rem; text-align: right; }
+  .project-toggle { font-size: 0.9rem; color: var(--ink-light); transition: transform 0.3s; min-width: 1.2rem; text-align: center; }
+  details[open] .project-toggle { transform: rotate(180deg); }
+  .project-body { padding: 0 0 1.5rem; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+  @media (max-width: 600px) { .project-summary { grid-template-columns: 1fr auto; } .project-tag { display: none; } .project-body { grid-template-columns: 1fr; } }
+  .project-desc { font-size: 0.95rem; line-height: 1.7; }
+  .project-link { font-family: var(--font-sans); font-size: 0.75rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 1px; display: inline-block; margin-top: 0.8rem; }
+  .project-image { aspect-ratio: 4/3; background: rgba(58,46,40,0.08); border-radius: 2px; overflow: hidden; }
+  body.dark .project-image { background: rgba(237,229,220,0.06); }
+  .project-image img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Blog */
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 2rem; }
+  .blog-card { text-decoration: none; color: inherit; display: block; }
+  .blog-card:hover .blog-title { color: var(--accent); }
+  .blog-date { font-family: var(--font-sans); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.5rem; }
+  .blog-title { font-size: 1rem; line-height: 1.4; margin-bottom: 0.6rem; transition: color 0.2s; }
+  .blog-excerpt { font-family: var(--font-sans); font-size: 0.85rem; color: var(--ink-light); line-height: 1.6; }
+
+  /* Contact */
+  #contact .contact-body { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  @media (max-width: 600px) { #contact .contact-body { grid-template-columns: 1fr; } }
+  .contact-intro { font-size: 1rem; }
+  .contact-links { list-style: none; }
+  .contact-links li { padding: 0.7rem 0; border-bottom: 1px solid var(--border); }
+  .contact-links li:first-child { border-top: 1px solid var(--border); }
+  .contact-links a { font-family: var(--font-sans); font-size: 0.85rem; color: var(--ink); text-decoration: none; display: flex; justify-content: space-between; align-items: center; transition: color 0.2s; }
+  .contact-links a:hover { color: var(--accent); }
+{{ end }}
+
+{{ define "main" }}
+{{ $lang := .Site.Language.Lang }}
+{{ $p := .Params }}
+
+<!-- Hero -->
+<section id="hero">
+  <p class="hero-text">{{ $p.hero }}</p>
+  <div class="hero-links">
+    <a href="#projects">{{ i18n "hero_link" }}</a>
+    <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-title">{{ i18n "about_title" }}</span>
+  </div>
+  <div class="about-body">
+    <div class="about-text">
+      {{ range $p.bio }}<p>{{ . }}</p>{{ end }}
+    </div>
+    <aside class="about-meta">
+      <ul>
+        <li>
+          <span class="label">{{ i18n "location" }}</span>
+          <span class="value">Barcelona</span>
+        </li>
+        <li>
+          <span class="label">{{ i18n "organization" }}</span>
+          <span class="value">{{ .Site.Params.org }}</span>
+        </li>
+        <li>
+          <span class="label">{{ i18n "areas" }}</span>
+          <span class="value">{{ $p.areas }}</span>
+        </li>
+        <li>
+          <span class="label">CV</span>
+          <span class="value"><a href="/cv.pdf">{{ i18n "cv_download" }}</a></span>
+        </li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-title">{{ i18n "projects_title" }}</span>
+  </div>
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">{{ i18n "filter_all" }}</button>
+    <button class="filter-btn" data-filter="education">{{ i18n "filter_edu" }}</button>
+    <button class="filter-btn" data-filter="fabrication">{{ i18n "filter_fab" }}</button>
+    <button class="filter-btn" data-filter="research">{{ i18n "filter_research" }}</button>
+  </div>
+  <ul class="project-list">
+    {{ range .Site.Data.projects }}
+    <li class="project-item" data-tags="{{ delimit .tags " " }}">
+      <details>
+        <summary class="project-summary">
+          <span class="project-name">{{ index .name $lang }}</span>
+          <span class="project-tag">{{ index .tag_label $lang }}</span>
+          <span class="project-year">{{ .year }}</span>
+          <span class="project-toggle">∨</span>
+        </summary>
+        <div class="project-body">
+          <div>
+            <p class="project-desc">{{ index .desc $lang }}</p>
+            <a href="{{ .url }}" class="project-link">{{ i18n "project_view" }}</a>
+          </div>
+          <div class="project-image">
+            {{ with .image }}<img src="{{ . }}" alt="{{ index $.Site.Data.projects 0 | default "" }}" />{{ end }}
+          </div>
+        </div>
+      </details>
+    </li>
+    {{ end }}
+  </ul>
+</section>
+
+<!-- Blog -->
+<section id="blog">
+  <div class="section-header">
+    <span class="section-title">Blog</span>
+  </div>
+  <div class="blog-grid">
+    {{ range (where .Site.RegularPages "Section" "posts") }}
+    <a href="{{ .Permalink }}" class="blog-card">
+      <p class="blog-date">{{ .Date.Format "January 2006" }}</p>
+      <h3 class="blog-title">{{ .Title }}</h3>
+      <p class="blog-excerpt">{{ .Params.excerpt }}</p>
+    </a>
+    {{ end }}
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-title">{{ i18n "contact_title" }}</span>
+  </div>
+  <div class="contact-body">
+    <p class="contact-intro">{{ $p.contact_intro }}</p>
+    <ul class="contact-links">
+      <li><a href="mailto:{{ .Site.Params.email }}">Email <span>↗</span></a></li>
+      <li><a href="{{ .Site.Params.github }}" target="_blank" rel="noopener">GitHub <span>↗</span></a></li>
+      <li><a href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener">LinkedIn <span>↗</span></a></li>
+      <li><a href="https://fablabbcn.org" target="_blank" rel="noopener">Fab Lab Barcelona <span>↗</span></a></li>
+    </ul>
+  </div>
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+  // Project filter
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.project-item').forEach(item => {
+        item.style.display = (f === 'all' || item.dataset.tags.includes(f)) ? '' : 'none';
+      });
+    });
+  });
+{{ end }}
