@@ -1,4 +1,4 @@
-baseURL = "https://yourusername.github.io/"
+baseURL = "https://santifu.github.io/web/"
 title   = "Santi Fuentemilla"
 
 defaultContentLanguage        = "es"
@@ -20,7 +20,7 @@ defaultContentLanguageInSubdir = false
 
 [params]
   email    = "santi@fablabbcn.org"
-  github   = "https://github.com/yourusername"
+  github   = "https://github.com/santifu"
   linkedin = "https://linkedin.com/in/yourusername"
   org      = "Fab Lab Barcelona / IAAC"
   ogImage  = "/img/og.jpg"
